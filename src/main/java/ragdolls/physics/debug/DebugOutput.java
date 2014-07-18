@@ -24,7 +24,9 @@ public class DebugOutput extends IDebugDraw {
 		//dbg("color: " + color);
 		//Overlays.renderLineFromToBlockCenter(from.x, from.y + 80, from.z, to.x, to.y + 80, to.z, (int)color.x*255 << 24 | (int)color.x*255 << 16 | (int)color.x*255 << 8);
 		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-			drawLineClient(from, to, color);
+			if (color.y == 1) {
+				drawLineClient(from, to, color);
+			}
 		}
 		//
 		if (color.x != 0) {

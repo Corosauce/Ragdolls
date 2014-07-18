@@ -4,6 +4,7 @@ import javax.vecmath.Vector3f;
 
 import ragdolls.client.Ragdoll;
 import ragdolls.client.RagdollManager;
+import ragdolls.physics.entity.RagdollCharacter;
 
 import com.bulletphysics.collision.dispatch.CollisionObject;
 
@@ -47,16 +48,34 @@ public class EventHandlerFML {
 	public void tickClient(ClientTickEvent event) {
 		if (event.phase == Phase.START) {
 			
-			//TEMP! DELETE ME LATER
-			if (FMLClientHandler.instance().getClient().theWorld != null && FMLClientHandler.instance().getClient().theWorld.getTotalWorldTime() % 60 == 0) {
-				for (int i = 0; i < RagdollManager.listRagdolls.size(); i++) {
-					Ragdoll rd = RagdollManager.listRagdolls.get(i);
-					rd.rigidBody.setActivationState(CollisionObject.ACTIVE_TAG);
-					rd.rigidBody.applyCentralImpulse(new Vector3f(0, 20, 8));
-				}
-				
-			}
+			if (!FMLClientHandler.instance().getClient().isGamePaused()) {
 			
+				int part = RagdollCharacter.BodyPart.BODYPART_LEFT_LOWER_LEG.ordinal();
+				int part2 = RagdollCharacter.BodyPart.BODYPART_RIGHT_LOWER_LEG.ordinal();
+				
+				//int part = RagdollCharacter.BodyPart.BODYPART_HEAD.ordinal();
+				//int part2 = RagdollCharacter.BodyPart.BODYPART_HEAD.ordinal();
+				
+				//TEMP! DELETE ME LATER
+				if (FMLClientHandler.instance().getClient().theWorld != null && FMLClientHandler.instance().getClient().theWorld.getTotalWorldTime() % 20 < 18) {
+					for (int i = 0; i < RagdollManager.listRagdolls.size(); i++) {
+						Ragdoll rd = RagdollManager.listRagdolls.get(i);
+						//rd.ragdollChar.bodies[part].setActivationState(CollisionObject.ACTIVE_TAG);
+						rd.ragdollChar.bodies[part].applyCentralImpulse(new Vector3f(0, 5, 1));
+						rd.ragdollChar.bodies[part2].applyCentralImpulse(new Vector3f(0, 5, -1));
+					}
+					
+				}
+				/*if (FMLClientHandler.instance().getClient().theWorld != null && FMLClientHandler.instance().getClient().theWorld.getTotalWorldTime() % 20 == 0) {
+					for (int i = 0; i < RagdollManager.listRagdolls.size(); i++) {
+						Ragdoll rd = RagdollManager.listRagdolls.get(i);
+						rd.ragdollChar.bodies[part].setActivationState(CollisionObject.ACTIVE_TAG);
+						rd.ragdollChar.bodies[part].applyCentralImpulse(new Vector3f(0, -40, 0));
+					}
+					
+				}*/
+
+			}
 			//test
 			
 			

@@ -70,7 +70,7 @@ public class EntityColliderEntry {
 		if (boxes.size() > 0) {
 			for (int i = 0; i < boxes.size(); i++) {
 				AxisAlignedBB box = (AxisAlignedBB) boxes.get(i);
-				Vector3f newPos = new Vector3f((float)(box.maxX + box.minX)/2F, (float)(box.maxY + box.minY)/2F - 1, (float)(box.maxZ + box.minZ)/2F);
+				Vector3f newPos = new Vector3f((float)(box.maxX + box.minX)/2F, (float)(box.maxY + box.minY)/2F - 0, (float)(box.maxZ + box.minZ)/2F);
 				Vector3f newSize = new Vector3f((float)(box.maxX - box.minX)/2F, (float)(box.maxY - box.minY)/2F, (float)(box.maxZ - box.minZ)/2F);
 				
 				if (!chunkManager.lookupHashEntries.containsKey(newPos.hashCode())) {
